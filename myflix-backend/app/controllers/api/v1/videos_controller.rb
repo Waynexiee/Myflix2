@@ -20,7 +20,7 @@ module Api::V1
         json_response({errors: "Cannot find video"}, 422)
         return
       end
-      json_response @video.attributes.merge('reviews' => @reviews, 'is_in_queue' => is_existed?(@video.id))
+      json_response @video.attributes.merge('reviews' => @reviews, 'is_in_queue' => is_existed?(@video.id), 'average_score' => @video.average_score)
     end
 
     def search
