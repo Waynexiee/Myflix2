@@ -13,7 +13,7 @@ const Reviews = ({ reviews }) => {
             <li className="row">
               <div className="col-sm-2">
                 <span>Rating: {review.score}</span>
-                <p>by {review.user_name}</p>
+                <p>by {review.writen_by}</p>
               </div>
               <div className="col-sm-8">
                 <p>{review.content}</p>
@@ -26,8 +26,8 @@ const Reviews = ({ reviews }) => {
   );
 };
 
-Reviews.protoType = {
-  reviews: ProtoTypes.array.isRequired
+Reviews.propType = {
+  reviews: PropTypes.array.isRequired
 };
 
 export default Reviews;

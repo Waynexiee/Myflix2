@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import { getVideo } from "../../actions/videoActions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-
+import Comment from "../comments/Comment";
 class Video extends Component {
   constructor() {
     super();
@@ -11,7 +10,7 @@ class Video extends Component {
   }
 
   componentDidMount() {
-    this.props.getVideo(this.props.video.id);
+    this.props.getVideo(this.props.match.params.id);
   }
 
   onClick(e) {
@@ -22,36 +21,41 @@ class Video extends Component {
   render() {
     const video = this.props.video;
     return (
-      <article className="video">
-        <div className="container">
-          <div className="row">
-            <div className="video_large_cover col-sm-7 col-sm-offset-1">
-              <img src={video.larger_cover_url} />
-            </div>
-            <div className="video_info col-sm-3">
-              <header>
-                <h3>{video.title}</h3>
-                <span>Rating: {video.average_score} / 5.0</span>
-              </header>
-              <p>{video.description}</p>
-              <div className="action">
-                <Link
-                  to={`/watch_video/${video.url}`}
-                  className="btn btn-primary"
-                  target="_blank"
+      <div>
+        <article className="video">
+          <div className="container">
+            <div className="row">
+              <div className="video_large_cover col-sm-7 col-sm-offset-1">
+                <video
+                  width="665"
+                  height="375"
+                  src={video.video_url}
+                  controls="controls"
+                  autobuffer="autobuffer"
                 >
-                  Watch Now
-                </Link>
-                <input
-                  onClick={this.onClick}
-                  className="btn btn-primary"
-                  value="+ My Queue"
-                />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              <div className="video_info col-sm-3">
+                <header>
+                  <h3>{video.title}</h3>
+                  <span>Rating: {video.average_score} / 5.0</span>
+                </header>
+                <p>{video.description}</p>
+                <div className="action">
+                  <input
+                    onChange={this.onClick}
+                    className="btn btn-primary"
+                    value="+ My Queue"
+                    type="button"
+                  />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </article>
+        </article>
+        <Comment video_id={video.id} />
+      </div>
     );
   }
 }

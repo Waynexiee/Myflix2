@@ -2,8 +2,23 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Reviews from "./Reviews";
+import { Link } from "react-router-dom";
+import { addComment } from "../../actions/commentActions";
 
 class Comment extends Component {
+  constructor() {
+    super();
+    this.state = {
+      value: ""
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    e.preventDefault();
+  }
+
   render() {
     return (
       <section className="reviews container">
@@ -43,10 +58,10 @@ class Comment extends Component {
                   value="Submit"
                   className="btn btn-primary"
                 />
-                <Link to={`/video/${video.id}`}>Cancel</Link>
+                <Link to={`/video/${this.props.video_id}`}>Cancel</Link>
               </fieldset>
             </form>
-            <Reviews reviews={video.reviews} />
+            <Reviews reviews={this.props.reviews || []} />
           </div>
         </div>
       </section>
@@ -54,12 +69,12 @@ class Comment extends Component {
   }
 }
 
-Video.protoType = {
-  comments: PropTypes.array.isRequired
+Comment.protoType = {
+  reviews: PropTypes.array.isRequired
 };
 
 const mapStateToProps = state => ({
-  comments: state.categories.video.comments
+  reviews: state.categories.video.reviews
 });
 
 export default connect(
