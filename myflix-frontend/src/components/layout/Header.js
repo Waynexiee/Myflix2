@@ -44,7 +44,7 @@ class Header extends Component {
           <Link to="/friendship">PEOPLE</Link>
         </li>
         <li key="advanced_search">
-          <Link to="/advanced_search_videos_path">ADVANCED SEARCH</Link>
+          <Link to="/advanced_search">ADVANCED SEARCH</Link>
         </li>
       </ul>
     );
@@ -72,22 +72,27 @@ class Header extends Component {
       <div className="pullright" id="user_links" key="dropDown">
         <ul>
           <li className="dropdown">
-            <a
-              className="dropdown-toggle"
+            <button
+              className="dropdown-toggle btn-primary-outline"
               data-target="#"
               data-toggle="dropdown"
-              href="#"
               id="dlabel"
-              role="button"
             >
               Welcome,{user.name}
               <b className="caret" />
-            </a>
+            </button>
             <ul aria-labelledby="dlabel" className="dropdown-menu" role="menu">
               <li>
-                <Link to="/user">Account</Link>
-                <a />
-                <a data-method="delete" rel="nofollow" onClick={this.onClick}>
+                <Link to="/user" className="dropdown-item">
+                  Account
+                </Link>
+                <a
+                  data-method="delete"
+                  rel="nofollow"
+                  onClick={this.onClick}
+                  className="dropdown-item"
+                  href="#"
+                >
                   Sign Out
                 </a>
               </li>

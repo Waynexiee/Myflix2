@@ -1,3 +1,6 @@
 export const GET_ERRORS = "GET_ERRORS";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
+export const GET_VIDEOS = "GET_VIDEOS";
+export const GET_VIDEO = "GET_VIDEO";
+export const GET_ADVANCED_SEARCH_VIDEOS = "GET_ADVANCED_SEARCH_VIDEOS";

@@ -10,8 +10,10 @@ import { Provider } from "react-redux";
 import store from "./store";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Videos from "./components/videos/Videos";
+import Video from "./components/videos/Video";
 import { logoutUser, setCurrentUser } from "./actions/authActions";
 import setAuthToken from "./utils/setAuthToken";
+import AdvancedSearch from "./components/advanced_search/AdvancedSearch";
 
 if (localStorage.jwtToken) {
   setAuthToken(localStorage.jwtToken);
@@ -35,6 +37,8 @@ class App extends Component {
             <Route exact path="/register" component={Register} />
             <Route exact path="/sign_in" component={Login} />
             <Route exact path="/videos" component={Videos} />
+            <Route exact path="/videos/:id" component={Video} />
+            <Route exact path="/advanced_search" component={AdvancedSearch} />
             <Footer />
           </div>
         </Router>

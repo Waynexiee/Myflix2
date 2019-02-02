@@ -28,12 +28,19 @@ export const loginUser = (userData, history) => dispatch => {
       dispatch(setCurrentUser(decoded));
       history.push("/videos");
     })
-    .catch(err =>
+    .catch(err => {
+      let error;
+      if (err.response) {
+        error = err.response.data;
+      } else {
+        error = err.data;
+      }
+
       dispatch({
         type: GET_ERRORS,
-        payload: err.response.data
-      })
-    );
+        payload: error
+      });
+    });
 };
 
 export const setCurrentUser = decoded => {
@@ -47,5 +54,9 @@ export const logoutUser = history => dispatch => {
   localStorage.removeItem("jwtToken");
   setAuthToken(false);
   dispatch(setCurrentUser({}));
-  history.push("/front");
+  if (history) {
+    history.push("/");
+  } else {
+    window.location.href = window.location.hostname + "/";
+  }
 };

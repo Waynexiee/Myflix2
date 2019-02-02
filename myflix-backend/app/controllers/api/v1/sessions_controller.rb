@@ -10,7 +10,7 @@ module Api::V1
     end
 
     def destroy
-      log_out
+      log_out(params[:token])
       json_response nil, :success
     end
 

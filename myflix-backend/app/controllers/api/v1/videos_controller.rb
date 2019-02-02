@@ -24,7 +24,6 @@ module Api::V1
     end
 
     def search
-      p params
       @videos = Video.search_by_title(params[:search])
       json_response @videos
     end
@@ -41,6 +40,7 @@ module Api::V1
       else
         @videos = []
       end
+      json_response @videos
     end
   end
 end
