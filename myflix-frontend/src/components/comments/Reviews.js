@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const Reviews = ({ reviews }) => {
   return (
@@ -13,7 +14,12 @@ const Reviews = ({ reviews }) => {
             <li className="row">
               <div className="col-sm-2">
                 <span>Rating: {review.score}</span>
-                <p>by {review.writen_by}</p>
+                <p>
+                  by{" "}
+                  <Link to={`/users/${review.user_id}`}>
+                    {review.writen_by}
+                  </Link>
+                </p>
               </div>
               <div className="col-sm-8">
                 <p>{review.content}</p>

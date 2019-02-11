@@ -37,7 +37,9 @@ class User < ApplicationRecord
     if reviews.nil?
       return []
     else
-      return reviews
+      reviews.map do |review|
+        review.attributes.merge(video_name: review.video.title)
+      end
     end
   end
 
@@ -55,7 +57,7 @@ class User < ApplicationRecord
   end
 
   def can_follow?(follower)
-    follower.id != id && !friends.include?(follower)
+    follower.id != id && !friendships.map(&:friend_id).include?(follower.id)
   end
 
   def self.new_token

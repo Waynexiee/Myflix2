@@ -11,7 +11,7 @@ const VideoByCategory = ({ category, name }) => {
       <div className="videos row">
         {category.map(video => (
           <div className="video col-sm-2" key={video.id}>
-            <Link to={`/video/${video.id}`}>
+            <Link to={`/videos/${video.id}`}>
               <img src={`${video.smaller_cover_url}`} alt={video.name} />
             </Link>
           </div>

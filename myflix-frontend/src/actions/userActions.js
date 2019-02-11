@@ -1,11 +1,12 @@
 import axios from "axios";
-import { GET_ERRORS, GET_VIDEO } from "./types";
-export const addComment = (video_id, comment) => dispatch => {
+import { GET_ERRORS, GET_USER } from "./types";
+
+export const getUser = id => dispatch => {
   axios
-    .post(`/api/v1/videos/${video_id}/reviews`, comment)
+    .get(`/api/v1/users/${id}`)
     .then(res => {
       dispatch({
-        type: GET_VIDEO,
+        type: GET_USER,
         payload: res.data
       });
     })
@@ -14,7 +15,7 @@ export const addComment = (video_id, comment) => dispatch => {
       if (err.response) {
         error = err.response.data;
       } else {
-        error = err.data;
+        error = err;
       }
 
       dispatch({

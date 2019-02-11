@@ -15,8 +15,12 @@ module Api::V1
 
     def create
       @friendship = Friendship.new(user: current_user, friend_id: params[:friend_id])
-      if current_user.can_follow?(User.find(params[:friend_id])) && @friendship.save
-        json_response("Follow successfully!")
+      @user = User.find(params[:friend_id])
+      if current_user.can_follow?(@user) && @friendship.save
+        json_response(@user.attributes.merge(all_reviews: @user.reviews,
+                                             can_follow: current_user.can_follow?(@user),
+                                             avatar: @user.avatar,
+                                             all_queue_items: @user.updated_queue_items))
       else
         @followings = current_user.friendships || []
         json_response("Follow failed!", 403)

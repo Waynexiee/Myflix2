@@ -13,7 +13,8 @@ class QueueItem < ApplicationRecord
 
   def video_score
     return nil if user.reviews.empty?
-    user.reviews.find_by(video: video_id).score
+    review = user.reviews.find_by(video: video_id)
+    review ? review.score : nil
   end
 
   def video_url

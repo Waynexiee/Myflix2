@@ -83,7 +83,7 @@ class Header extends Component {
             </button>
             <ul aria-labelledby="dlabel" className="dropdown-menu" role="menu">
               <li>
-                <Link to="/user" className="dropdown-item">
+                <Link to={`/users/${user.user_id}`} className="dropdown-item">
                   Account
                 </Link>
                 <a

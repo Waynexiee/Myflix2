@@ -78,3 +78,27 @@ export const getVideo = id => dispatch => {
       });
     });
 };
+
+export const addVideoToQueue = video_id => dispatch => {
+  axios
+    .post(`/api/v1/my_queue`, { video_id: video_id })
+    .then(res => {
+      dispatch({
+        type: GET_VIDEO,
+        payload: res.data
+      });
+    })
+    .catch(err => {
+      let error;
+      if (err.response) {
+        error = err.response.data;
+      } else {
+        error = err.data;
+      }
+
+      dispatch({
+        type: GET_ERRORS,
+        payload: error
+      });
+    });
+};

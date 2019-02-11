@@ -4,3 +4,6 @@ export const SET_CURRENT_USER = "SET_CURRENT_USER";
 export const GET_VIDEOS = "GET_VIDEOS";
 export const GET_VIDEO = "GET_VIDEO";
 export const GET_ADVANCED_SEARCH_VIDEOS = "GET_ADVANCED_SEARCH_VIDEOS";
+export const GET_QUEUE_ITEMS = "GET_QUEUE_ITEMS";
+export const GET_FRIENDSHIP = "GET_FRIENDSHIP";
+export const GET_USER = "GET_USER";

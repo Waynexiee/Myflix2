@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getVideo } from "../../actions/videoActions";
+import { getVideo, addVideoToQueue } from "../../actions/videoActions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Comment from "../comments/Comment";
@@ -43,12 +43,14 @@ class Video extends Component {
                 </header>
                 <p>{video.description}</p>
                 <div className="action">
-                  <input
-                    onChange={this.onClick}
-                    className="btn btn-primary"
-                    value="+ My Queue"
-                    type="button"
-                  />
+                  {!video.is_in_queue && (
+                    <input
+                      onClick={this.onClick}
+                      className="btn btn-primary"
+                      value="+ My Queue"
+                      type="button"
+                    />
+                  )}
                 </div>
               </div>
             </div>
@@ -70,5 +72,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getVideo }
+  { getVideo, addVideoToQueue }
 )(Video);

@@ -9,14 +9,30 @@ class Comment extends Component {
   constructor() {
     super();
     this.state = {
-      value: ""
+      content: "",
+      score: "1"
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   handleChange(e) {
     e.preventDefault();
+    this.setState({ score: e.target.value });
+  }
+
+  onChange(e) {
+    e.preventDefault();
+    this.setState({ content: e.target.value });
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+    this.props.addComment(this.props.video_id, this.state);
+    this.setState({ content: "" });
+    this.setState({ score: "1" });
   }
 
   render() {
@@ -24,14 +40,14 @@ class Comment extends Component {
       <section className="reviews container">
         <div className="row">
           <div className="col-sm-10 col-sm-offset-1">
-            <form>
+            <form onSubmit={this.onSubmit}>
               <fieldset>
                 <div className="form-group">
                   <label>Rate This Video</label>
                   <div className="row">
                     <div className="col-sm-3">
                       <select
-                        value={this.state.value}
+                        value={this.state.score}
                         onChange={this.handleChange}
                       >
                         <option value="1">1 Star</option>
@@ -44,10 +60,15 @@ class Comment extends Component {
                   </div>
                 </div>
                 <div className="form-group">
-                  <lable>Write Review</lable>
+                  <label>Write Review</label>
                   <div className="row">
                     <div className="col-sm-8">
-                      <textarea rows="6" className="form-control" />
+                      <textarea
+                        rows="6"
+                        className="form-control"
+                        onChange={this.onChange}
+                        value={this.state.content}
+                      />
                     </div>
                   </div>
                 </div>

@@ -17,7 +17,7 @@ module Api::V1
         @reviews = @video.reviews.map do |review|
           review.attributes.merge(writen_by: review.user.name)
         end
-        json_response @video.attributes.merge({'reviews' => @reviews, 'is_in_queue' => is_existed?(@video.id)})
+        json_response @video.attributes.merge({'reviews' => @reviews, 'is_in_queue' => is_existed?(@video.id), 'average_score' => @video.average_score})
       else
         json_response("Add failed!", 404)
       end

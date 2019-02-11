@@ -14,6 +14,9 @@ import Video from "./components/videos/Video";
 import { logoutUser, setCurrentUser } from "./actions/authActions";
 import setAuthToken from "./utils/setAuthToken";
 import AdvancedSearch from "./components/advanced_search/AdvancedSearch";
+import QueueItems from "./components/queue/QueueItems";
+import User from "./components/user/User";
+import Friendship from "./components/people/Friendship";
 
 if (localStorage.jwtToken) {
   setAuthToken(localStorage.jwtToken);
@@ -39,6 +42,9 @@ class App extends Component {
             <Route exact path="/videos" component={Videos} />
             <Route exact path="/videos/:id" component={Video} />
             <Route exact path="/advanced_search" component={AdvancedSearch} />
+            <Route exact path="/my_queue" component={QueueItems} />
+            <Route exact path="/friendship" component={Friendship} />
+            <Route exact path="/users/:id" component={User} />
             <Footer />
           </div>
         </Router>

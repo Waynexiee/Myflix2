@@ -15,9 +15,8 @@ module Api::V1
 
     def show
       @user = User.find(params[:id])
-      can_follow = (@user != current_user && current_user.friendships.map(&:friend_ship).include?(@user.id))
-      json_response(@user.attributes.merge(all_reviews: @user.reviews,
-                                           can_follow: can_follow,
+      json_response(@user.attributes.merge(all_reviews: @user.all_reviews,
+                                           can_follow: current_user.can_follow?(@user),
                                            avatar: @user.avatar,
                                            all_queue_items: @user.updated_queue_items))
     end
